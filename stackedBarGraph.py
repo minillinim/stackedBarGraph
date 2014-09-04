@@ -52,9 +52,10 @@ class StackedBarGrapher:
         d_widths = [.5,1.,3.,2.,1.,2.]
         d_labels = ["fred","julie","sam","peter","rob","baz"]
         d_colors = ['#2166ac', '#fee090', '#fdbb84', '#fc8d59', '#e34a33', '#b30000', '#777777']
+        gap = 0.05
 
         fig = plt.figure()
-        ax1 = fig.add_subplot(221)
+        ax1 = fig.add_subplot(321)
         self.stackedBarPlot(ax1,
                             d,
                             d_colors,
@@ -63,7 +64,7 @@ class StackedBarGrapher:
                             )
         plt.title("Straight up stacked bars")
 
-        ax2 = fig.add_subplot(222)
+        ax2 = fig.add_subplot(322)
         self.stackedBarPlot(ax2,
                             d,
                             d_colors,
@@ -73,7 +74,7 @@ class StackedBarGrapher:
                             )
         plt.title("Scaled bars")
 
-        ax3 = fig.add_subplot(223)
+        ax3 = fig.add_subplot(323)
         self.stackedBarPlot(ax3,
                             d,
                             d_colors,
@@ -84,7 +85,7 @@ class StackedBarGrapher:
                             )
         plt.title("Bars with set heights")
 
-        ax4 = fig.add_subplot(224)
+        ax4 = fig.add_subplot(324)
         self.stackedBarPlot(ax4,
                             d,
                             d_colors,
@@ -95,6 +96,28 @@ class StackedBarGrapher:
                             scale=True
                             )
         plt.title("Scaled bars with set widths")
+
+        ax5 = fig.add_subplot(325)
+        self.stackedBarPlot(ax5,
+                            d,
+                            d_colors,
+                            edgeCols=['#000000']*7,
+                            xLabels=d_labels,
+                            gap=gap
+                            )
+        plt.title("Straight up stacked bars + gaps")
+
+        ax6 = fig.add_subplot(326)
+        self.stackedBarPlot(ax6,
+                            d,
+                            d_colors,
+                            edgeCols=['#000000']*7,
+                            xLabels=d_labels,
+                            scale=True,
+                            gap=gap,
+                            endGaps=True
+                            )
+        plt.title("Scaled bars + gaps + end gaps")
 
         # We change the fontsize of minor ticks label
         fig.subplots_adjust(bottom=0.4)
@@ -117,6 +140,8 @@ class StackedBarGrapher:
                        heights=None,                       # set heights for each bar
                        ylabel='',                          # label for x axis
                        xlabel='',                          # label for y axis
+                       gap=0.,                             # gap between bars
+                       endGaps=False                       # allow gaps at end of bar chart (only used if gaps != 0.)
                        ):
 
 #------------------------------------------------------------------------------
@@ -147,7 +172,6 @@ class StackedBarGrapher:
             x = [0]
             for i in range(1, len(widths)):
                 x.append(x[i-1] + (widths[i-1] + widths[i])/2)
-
 
         # stack the data --
         # replace the value in each level by the cumulative sum of all preceding levels
@@ -196,22 +220,26 @@ class StackedBarGrapher:
         if edgeCols is None:
             edgeCols = ["none"]*len(cols)
 
+        # take cae of gaps
+        gapd_widths = [i - gap for i in widths]
+
         # bars
         ax.bar(x,
                data_stack[0],
                color=cols[0],
                edgecolor=edgeCols[0],
-               width=widths,
+               width=gapd_widths,
                linewidth=0.5,
                align='center'
                )
+
         for i in np.arange(1,levels):
             ax.bar(x,
                    data_copy[i],
                    bottom=data_stack[i-1],
                    color=cols[i],
                    edgecolor=edgeCols[i],
-                   width=widths,
+                   width=gapd_widths,
                    linewidth=0.5,
                    align='center'
                    )
@@ -238,14 +266,17 @@ class StackedBarGrapher:
             plt.xticks([], [])
 
         # limits
-        ax.set_xlim(-1.*widths[0]/2., np.sum(widths)-0.5)
-        ax.set_ylim(0, np.max(data_stack))
+        if endGaps:
+            ax.set_xlim(-1.*widths[0]/2. - gap/2., np.sum(widths)-widths[0]/2. + gap/2.)
+        else:
+            ax.set_xlim(-1.*widths[0]/2. + gap/2., np.sum(widths)-widths[0]/2. - gap/2.)
+        ax.set_ylim(0, yTicks[0][-1])#np.max(data_stack))
 
         # labels
         if xlabel != '':
-            ax.xlabel(xlabel)
+            plt.xlabel(xlabel)
         if ylabel != '':
-            ax.ylabel(ylabel)
+            plt.ylabel(ylabel)
 
 
 ###############################################################################
