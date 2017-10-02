@@ -21,13 +21,9 @@
 ###############################################################################
 
 __author__ = "Michael Imelfort"
-__copyright__ = "Copyright 2014"
-__credits__ = ["Michael Imelfort"]
+__copyright__ = "Copyright 2014-2017"
 __license__ = "GPL3"
-__version__ = "0.0.1"
-__maintainer__ = "Michael Imelfort"
-__email__ = "mike@mikeimelfort.com"
-__status__ = "Development"
+__version__ = "1.0"
 
 ###############################################################################
 
@@ -182,7 +178,7 @@ class StackedBarGrapher:
             data_copy /= data_stack[levels-1]
             data_stack /= data_stack[levels-1]
             if heights is not None:
-                print "WARNING: setting scale and heights does not make sense."
+                print("WARNING: setting scale and heights does not make sense.")
                 heights = None
         elif heights is not None:
             data_copy /= data_stack[levels-1]

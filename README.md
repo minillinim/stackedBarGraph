@@ -16,23 +16,23 @@ one useful function called 'stackedBarPlot'.
 
 Its required arguments are:
 
-    ax                                  # pyplot axes to plot onto
-    data                                # data to plot  --> A list of lists of FLOATS.
-    cols                                # colors for each level in the stack
+    ax                  # pyplot axes to plot onto
+    data                # data to plot  --> A list of lists of FLOATS.
+    cols                # colors for each level in the stack
 
-    Optional arguments:
+Optional arguments:
 
-    xLabels                     	# bar specific labels
-    yTicks                        	# information used for making y ticks ["none", <int> or [[tick_pos1, tick_pos2, ... ],[tick_label_1, tick_label2, ...]]
-    edgeCols                            # colors for edges
-    showFirst                           # only plot the first <showFirst> bars
-    scale                        	# scale bars to same height
-    widths                        	# set widths for each bar
-    heights                       	# set heights for each bar
-    ylabel                              # label for x axis
-    xlabel                              # label for y axis
-    gap                                 # all a gap between the bars (use a float, default = 0. i.e. no gap)
-    endGaps                             # allow gaps at end of bar chart (only used if gaps != 0.) True or False (default = False)
+    xLabels             # bar specific labels
+    yTicks              # information used for making y ticks ["none", <int> or [[tick_pos1, tick_pos2, ... ],[tick_label_1, tick_label2, ...]]
+    edgeCols            # colors for edges
+    showFirst           # only plot the first <showFirst> bars
+    scale               # scale bars to same height
+    widths              # set widths for each bar
+    heights             # set heights for each bar
+    ylabel              # label for x axis
+    xlabel              # label for y axis
+    gap                 # all a gap between the bars (use a float, default = 0. i.e. no gap)
+    endGaps             # allow gaps at end of bar chart (only used if gaps != 0.) True or False (default = False)
 
 ## Example usage 1
 
@@ -86,4 +86,4 @@ GPLv3 with love. Project home page, info on the source tree, documentation, issu
 
 ## Copyright
 
-Copyright (c) 2014 Michael Imelfort. See LICENSE.txt for further details.
+Copyright (c) 2014-2017 Michael Imelfort. See LICENSE.txt for further details.
