@@ -2,7 +2,8 @@
 
 ## Overview
 
-Code for making purdy stacked bar graphs
+Code for making purdy stacked bar graphs. I really needed this one day so searching online for an answer I found only this question: https://stackoverflow.com/questions/19060144/more-efficient-matplotlib-stacked-bar-chart-how-to-calculate-bottom-values. So I wrote this. There is more stacked-bar-graph-esque goodness at the above link.
+
 
 ## Installation
 
@@ -10,32 +11,32 @@ Copy and paste at will
 
 ## Usage
 
-	The file contains one Class called 'StackedBarGrapher' which contains
-	one useful function called 'stackedBarPlot'.
+The file contains one Class called 'StackedBarGrapher' which contains
+one useful function called 'stackedBarPlot'.
 
-	Its required arguments are:
+Its required arguments are:
 
-    ax                              # pyplot axes to plot onto
-    data                            # data to plot  --> A list of lists of FLOATS.
-    cols                            # colors for each level in the stack
+    ax                                  # pyplot axes to plot onto
+    data                                # data to plot  --> A list of lists of FLOATS.
+    cols                                # colors for each level in the stack
 
     Optional arguments:
 
     xLabels                     	# bar specific labels
     yTicks                        	# information used for making y ticks ["none", <int> or [[tick_pos1, tick_pos2, ... ],[tick_label_1, tick_label2, ...]]
-    edgeCols                      	# colors for edges
-    showFirst                       # only plot the first <showFirst> bars
+    edgeCols                            # colors for edges
+    showFirst                           # only plot the first <showFirst> bars
     scale                        	# scale bars to same height
     widths                        	# set widths for each bar
     heights                       	# set heights for each bar
-    ylabel                          # label for x axis
-    xlabel                          # label for y axis
-    gap                             # all a gap between the bars (use a float, default = 0. i.e. no gap)
-    endGaps                         # allow gaps at end of bar chart (only used if gaps != 0.) True or False (default = False)
+    ylabel                              # label for x axis
+    xlabel                              # label for y axis
+    gap                                 # all a gap between the bars (use a float, default = 0. i.e. no gap)
+    endGaps                             # allow gaps at end of bar chart (only used if gaps != 0.) True or False (default = False)
 
 ## Example usage 1
 
-	from stackedBarGraph import StackedBarGrapher()
+    from stackedBarGraph import StackedBarGrapher()
     SBG = StackedBarGrapher()
     SBG.demo()
 
@@ -81,9 +82,7 @@ If you experience any problems using stackedBarGraph, open an [issue](https://gi
 
 ## Licence and referencing
 
-Project home page, info on the source tree, documentation, issues and how to contribute, see http://github.com/minillinim/stackedBarGraph
-
-This software is currently unpublished
+GPLv3 with love. Project home page, info on the source tree, documentation, issues and how to contribute, see http://github.com/minillinim/stackedBarGraph
 
 ## Copyright
 
